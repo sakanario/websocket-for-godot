@@ -1,7 +1,8 @@
 var WebSocketServer = require('ws').Server
 
-const PORT = 3000
-var root_server = new WebSocketServer({ port: 3000 }); 
+const PORT = process.env.PORT || 3000
+
+var root_server = new WebSocketServer({ port: PORT }); 
 // var server = new wss.Server({port:PORT})
 
 console.log("Server started on port",PORT)
