@@ -1,0 +1,17 @@
+{
+  "name": "ws_server",
+  "version": "1.0.0",
+  "description": "ini project untuk latihan belajar websocket sederhana",
+  "main": "index.js",
+  "dependencies": {
+    "uws": "^200.0.0",
+    "ws": "^8.2.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node index.js",
+    "start": "node index.js"
+  },
+  "author": "Satria L",
+  "license": "ISC"
+}
