@@ -10,7 +10,7 @@ console.log("Server started on port",PORT)
 
 
 root_server.on('connection',server => {
-
+	// console.log(root_server.clients)
 	server.send(JSON.stringify({
 		"type"		: "200",
 		"message" 	: "Connection is established :D"
