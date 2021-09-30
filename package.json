@@ -9,7 +9,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "node index.js",
+    "test": "node room.js",
     "start": "node index.js"
   },
   "author": "Satria L",
