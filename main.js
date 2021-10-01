@@ -13,18 +13,26 @@ let counter = 0
 
 wss.on('connection',(socket) => {
 	const uuid = counter
+  
   console.log(`${uuid} is connected.`)
 	counter += 1
 
 	socket.on('message', raw_data => {
     var data = JSON.parse(raw_data)
 	  const { meta, sender_node_name, message, room_name } = data;
-    console.log(data)
+    
+    // Debugging : Print received data
+    console.log("Data received : ",data)
+    console.log()
     
     switch (meta) {
       case "create_room":
         if(room.create_room(room_name)){ // Host Create Room
           if(room.join_room(uuid,room_name,message,socket)){ //Host join the room
+            
+            // set user room
+            // user.set_room_name(room_name)
+
             // Send success create and join room
             socket.send( room.generate_data("success create room",sender_node_name,room_name) )
           }
@@ -45,14 +53,22 @@ wss.on('connection',(socket) => {
         let temp = room.generate_data("list of user",sender_node_name,room_name)
         room.broadcast_to_all_user_in_the_room( temp,room_name )
         
-        // Print user in the room to console
-        console.log(room.list_user_in_a_room(room_name))
+        // Debugging : List of user in a room
+        console.log(`List of user in a room ${room_name} `,room.list_user_in_a_room(room_name))
+        console.log()
         
       default:
         break
     }
 
 	})
+
+  socket.on("close", () => {
+    // for each room, remove the closed socket
+    console.log(`${uuid} is disconnected.`)
+    room.user_disconnected(uuid)
+  });
+
 })
 
 
