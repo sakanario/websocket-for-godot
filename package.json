@@ -7,10 +7,11 @@
     "uws": "^200.0.0",
     "ws": "^8.2.2"
   },
+  "type": "module",
   "devDependencies": {},
   "scripts": {
-    "test": "node room.js",
-    "start": "node index.js"
+    "test": "nodemon main.js",
+    "start": "node main.js"
   },
   "author": "Satria L",
   "license": "ISC"
